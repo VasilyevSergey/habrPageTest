@@ -1,0 +1,4 @@
+browserName=firefox
+nativeEvents=false
+myWebdriver=webdriver.gecko.driver
+pathToMyDriver=geckodriver.exe

@@ -1,0 +1,3 @@
+browserName=chrome
+myWebdriver=webdriver.chrome.driver
+pathToMyDriver=chromedriver.exe

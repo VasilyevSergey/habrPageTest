@@ -1,0 +1,4 @@
+browserName=internet explorer
+requireWindowFocus=true
+myWebdriver=webdriver.ie.driver
+pathToMyDriver=IEDriverServer.exe

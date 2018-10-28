@@ -1,0 +1,3 @@
+browserName=operablink
+myWebdriver=webdriver.opera.driver
+pathToMyDriver=operadriver.exe
