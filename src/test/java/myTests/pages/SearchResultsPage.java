@@ -4,15 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Optional;
 
 public class SearchResultsPage extends Page{
-    @FindBy(how = How.CLASS_NAME, using = "post__title_link")
+    @FindBy(how = How.XPATH, using = "//a[@class='post__title_link']")
     public List<WebElement> allArticles;
 
-    @FindBy(how = How.ID, using = "next_page")
+    @FindBy(how = How.XPATH, using = "//a[@id='next_page']")
     public WebElement nextPageButton;
 
     //поиск статьи по названию по всем страницам
@@ -20,15 +20,10 @@ public class SearchResultsPage extends Page{
         byte ptext[] = text.getBytes();
         String value = new String(ptext, StandardCharsets.UTF_8);
 
-        boolean didWeFoundArticle = false;
-        for (WebElement article : allArticles) {
-            if(article.getText().equals(value)){
-                didWeFoundArticle = true;
-                article.click();
-                break;
-            }
-        }
-        if(didWeFoundArticle == false){
+        Optional<WebElement> article = allArticles.stream().filter(webElement -> webElement.getText().equals(value)).findFirst();
+        if(article.isPresent()){
+            article.get().click();
+        }else{
             if(nextPageButton != null){
                 nextPageButton.click();
                 getArticle(text);
